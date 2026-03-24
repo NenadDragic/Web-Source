@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7dec6d6ceac7344a69f311703afe7a87 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+    <div style="
+      position: fixed; top: 12px; left: 50px; z-index: 1000;
+      background: rgba(8,13,20,.85); border: 1px solid #1a2a3a;
+      border-left: 3px solid #00c8ff;
+      padding: 10px 16px; font-family: 'Share Tech Mono', monospace;
+      color: #c8dae8; font-size: 13px; backdrop-filter: blur(4px);
+    ">
+      <span style="color:#00c8ff;font-size:16px">✈ FR24 Live Map</span><br>
+      <span style="color:#4a6070;font-size:11px">25 aircraft with position &nbsp;|&nbsp; 24 Mar 2026  09:58:52</span><br>
+      <span style="color:#4a6070;font-size:11px">
+        <a href="fr24_dashboard.html" style="color:#00c8ff">← Back to dashboard</a>
+      </span>
+    </div>
+    
+            <div class="folium-map" id="map_7dec6d6ceac7344a69f311703afe7a87" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7dec6d6ceac7344a69f311703afe7a87 = L.map(
+                "map_7dec6d6ceac7344a69f311703afe7a87",
+                {
+                    center: [56.0, 11.5],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 7,
+                    zoomControl: true,
+                    preferCanvas: true,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d4b8b8b48923ab0829211e1039b2f055 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_d4b8b8b48923ab0829211e1039b2f055.addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var marker_b4d1ae6ad0b13095a36f9b014c62c3fa = L.marker(
+                [55.71, 17.19],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_7445c0c1973eb9d206bfeec6dddce041 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(14deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_b4d1ae6ad0b13095a36f9b014c62c3fa.setIcon(div_icon_7445c0c1973eb9d206bfeec6dddce041);
+        
+    
+        var popup_571bc2b7c4cdb3134e46235a68057a33 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_7c074d619d6e9f812a16edc185d2a81a = $(`<div id="html_7c074d619d6e9f812a16edc185d2a81a" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">RYR8UV</b><br>               ICAO: 4CA9EC<br>               Højde: 37.750 ft<br>               Fart: 408 kt<br>               Kurs: 14°             </div></div>`)[0];
+                popup_571bc2b7c4cdb3134e46235a68057a33.setContent(html_7c074d619d6e9f812a16edc185d2a81a);
+            
+        
+
+        marker_b4d1ae6ad0b13095a36f9b014c62c3fa.bindPopup(popup_571bc2b7c4cdb3134e46235a68057a33)
+        ;
+
+        
+    
+    
+            marker_b4d1ae6ad0b13095a36f9b014c62c3fa.bindTooltip(
+                `<div>
+                     RYR8UV  37.750 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5842ecfdcdb14b2a566fdae2ba80d436 = L.marker(
+                [55.94, 11.8],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_a7e14f88ea7a69f05498cc3130bfbe82 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(99deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_5842ecfdcdb14b2a566fdae2ba80d436.setIcon(div_icon_a7e14f88ea7a69f05498cc3130bfbe82);
+        
+    
+        var popup_d5e5d8266e2eafc03e2017e48758da9c = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_1aeb8ca363919203209340634d56248c = $(`<div id="html_1aeb8ca363919203209340634d56248c" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">SAS55W</b><br>               ICAO: 4AB565<br>               Højde: 10.975 ft<br>               Fart: 311 kt<br>               Kurs: 99°             </div></div>`)[0];
+                popup_d5e5d8266e2eafc03e2017e48758da9c.setContent(html_1aeb8ca363919203209340634d56248c);
+            
+        
+
+        marker_5842ecfdcdb14b2a566fdae2ba80d436.bindPopup(popup_d5e5d8266e2eafc03e2017e48758da9c)
+        ;
+
+        
+    
+    
+            marker_5842ecfdcdb14b2a566fdae2ba80d436.bindTooltip(
+                `<div>
+                     SAS55W  10.975 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0aa8dde1c7ae1f6531148ce8157ca374 = L.marker(
+                [54.88, 10.16],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_799f99081262bff35f185f2399f08a5b = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(55deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_0aa8dde1c7ae1f6531148ce8157ca374.setIcon(div_icon_799f99081262bff35f185f2399f08a5b);
+        
+    
+        var popup_8db285787b21d7974d9b950b17e40f55 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_b1254093ff73469dbd1c1ac749ceab17 = $(`<div id="html_b1254093ff73469dbd1c1ac749ceab17" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">VLG1CY</b><br>               ICAO: 3444C9<br>               Højde: 33.575 ft<br>               Fart: 465 kt<br>               Kurs: 55°             </div></div>`)[0];
+                popup_8db285787b21d7974d9b950b17e40f55.setContent(html_b1254093ff73469dbd1c1ac749ceab17);
+            
+        
+
+        marker_0aa8dde1c7ae1f6531148ce8157ca374.bindPopup(popup_8db285787b21d7974d9b950b17e40f55)
+        ;
+
+        
+    
+    
+            marker_0aa8dde1c7ae1f6531148ce8157ca374.bindTooltip(
+                `<div>
+                     VLG1CY  33.575 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a566514c271546193bc213e8ae716627 = L.marker(
+                [57.5, 10.24],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_7e54a433f849baeba0358c151c9d1f62 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(183deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_a566514c271546193bc213e8ae716627.setIcon(div_icon_7e54a433f849baeba0358c151c9d1f62);
+        
+    
+        var popup_70aa2ebe2a17582f5e1c3e80005fa33b = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_08dfdd24e9b20a758558fa7b8a422de2 = $(`<div id="html_08dfdd24e9b20a758558fa7b8a422de2" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">SAS818</b><br>               ICAO: 4A91FA<br>               Højde: 37.025 ft<br>               Fart: 442 kt<br>               Kurs: 183°             </div></div>`)[0];
+                popup_70aa2ebe2a17582f5e1c3e80005fa33b.setContent(html_08dfdd24e9b20a758558fa7b8a422de2);
+            
+        
+
+        marker_a566514c271546193bc213e8ae716627.bindPopup(popup_70aa2ebe2a17582f5e1c3e80005fa33b)
+        ;
+
+        
+    
+    
+            marker_a566514c271546193bc213e8ae716627.bindTooltip(
+                `<div>
+                     SAS818  37.025 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0363833fd433af6a7fc61cf643a17f78 = L.marker(
+                [54.92, 11.31],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_dabe04900f3e36d15318cda500be4336 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(0deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_0363833fd433af6a7fc61cf643a17f78.setIcon(div_icon_dabe04900f3e36d15318cda500be4336);
+        
+    
+        var popup_604a449c057bcbbc485db81fc51d3e48 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_8860398a8dbc6bf3d37185805e468210 = $(`<div id="html_8860398a8dbc6bf3d37185805e468210" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">DLH5KV</b><br>               ICAO: 3C65D5<br>               Højde: 38.025 ft<br>               Fart: 384 kt<br>               Kurs: 0°             </div></div>`)[0];
+                popup_604a449c057bcbbc485db81fc51d3e48.setContent(html_8860398a8dbc6bf3d37185805e468210);
+            
+        
+
+        marker_0363833fd433af6a7fc61cf643a17f78.bindPopup(popup_604a449c057bcbbc485db81fc51d3e48)
+        ;
+
+        
+    
+    
+            marker_0363833fd433af6a7fc61cf643a17f78.bindTooltip(
+                `<div>
+                     DLH5KV  38.025 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e9cddacb9b3827383ee260e1bfa425f8 = L.marker(
+                [56.07, 11.96],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_e6e9b1872342420958218516c339e00f = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(330deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_e9cddacb9b3827383ee260e1bfa425f8.setIcon(div_icon_e6e9b1872342420958218516c339e00f);
+        
+    
+        var popup_1ca2851c7a581bb9b38b50f16c58e127 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_5f9b999076536a6ac5abf7f3d915dff7 = $(`<div id="html_5f9b999076536a6ac5abf7f3d915dff7" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">GRL761</b><br>               ICAO: 45AB24<br>               Højde: 15.650 ft<br>               Fart: 372 kt<br>               Kurs: 330°             </div></div>`)[0];
+                popup_1ca2851c7a581bb9b38b50f16c58e127.setContent(html_5f9b999076536a6ac5abf7f3d915dff7);
+            
+        
+
+        marker_e9cddacb9b3827383ee260e1bfa425f8.bindPopup(popup_1ca2851c7a581bb9b38b50f16c58e127)
+        ;
+
+        
+    
+    
+            marker_e9cddacb9b3827383ee260e1bfa425f8.bindTooltip(
+                `<div>
+                     GRL761  15.650 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_96bf59c3ac6faeb7204a4044b659faf9 = L.marker(
+                [55.65, 11.66],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_97262824a7daa03e59f50856699015e5 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(101deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_96bf59c3ac6faeb7204a4044b659faf9.setIcon(div_icon_97262824a7daa03e59f50856699015e5);
+        
+    
+        var popup_87228b160cba7cd764b1ff3fef868ea6 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_165c0a02400455f797fbd6c2e57e6cd1 = $(`<div id="html_165c0a02400455f797fbd6c2e57e6cd1" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">WZZ82SH</b><br>               ICAO: 4D24AE<br>               Højde: 37.000 ft<br>               Fart: 543 kt<br>               Kurs: 101°             </div></div>`)[0];
+                popup_87228b160cba7cd764b1ff3fef868ea6.setContent(html_165c0a02400455f797fbd6c2e57e6cd1);
+            
+        
+
+        marker_96bf59c3ac6faeb7204a4044b659faf9.bindPopup(popup_87228b160cba7cd764b1ff3fef868ea6)
+        ;
+
+        
+    
+    
+            marker_96bf59c3ac6faeb7204a4044b659faf9.bindTooltip(
+                `<div>
+                     WZZ82SH  37.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4cf5570c0b5fed54b224223ec2643173 = L.marker(
+                [57.4, 14.63],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_65825bda4ab346656fd9f8f1792b676b = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(215deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_4cf5570c0b5fed54b224223ec2643173.setIcon(div_icon_65825bda4ab346656fd9f8f1792b676b);
+        
+    
+        var popup_b985fb8942f103728a737214659efeb9 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_12412d2212c976c75e3879a01e6500d0 = $(`<div id="html_12412d2212c976c75e3879a01e6500d0" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">VKG1728</b><br>               ICAO: 45D065<br>               Højde: 34.000 ft<br>               Fart: 419 kt<br>               Kurs: 215°             </div></div>`)[0];
+                popup_b985fb8942f103728a737214659efeb9.setContent(html_12412d2212c976c75e3879a01e6500d0);
+            
+        
+
+        marker_4cf5570c0b5fed54b224223ec2643173.bindPopup(popup_b985fb8942f103728a737214659efeb9)
+        ;
+
+        
+    
+    
+            marker_4cf5570c0b5fed54b224223ec2643173.bindTooltip(
+                `<div>
+                     VKG1728  34.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5e0cc46acb430d945010b2e1e6bc0a09 = L.marker(
+                [57.3, 9.609],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_03403c01ba38d5bb9f2ad2e4d193517b = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(195deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_5e0cc46acb430d945010b2e1e6bc0a09.setIcon(div_icon_03403c01ba38d5bb9f2ad2e4d193517b);
+        
+    
+        var popup_3619a4ba06389e39502d12f9e127b40e = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_b09b866433aeab65badcb0e2e0be7c1c = $(`<div id="html_b09b866433aeab65badcb0e2e0be7c1c" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">NOZ4LH</b><br>               ICAO: 47A22C<br>               Højde: 36.000 ft<br>               Fart: 430 kt<br>               Kurs: 195°             </div></div>`)[0];
+                popup_3619a4ba06389e39502d12f9e127b40e.setContent(html_b09b866433aeab65badcb0e2e0be7c1c);
+            
+        
+
+        marker_5e0cc46acb430d945010b2e1e6bc0a09.bindPopup(popup_3619a4ba06389e39502d12f9e127b40e)
+        ;
+
+        
+    
+    
+            marker_5e0cc46acb430d945010b2e1e6bc0a09.bindTooltip(
+                `<div>
+                     NOZ4LH  36.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ee3749b3d1533996c2c370bdc176cd25 = L.marker(
+                [57.81, 15.32],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_ec63ae92a038632a9e5ec4605a0e68a6 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(216deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_ee3749b3d1533996c2c370bdc176cd25.setIcon(div_icon_ec63ae92a038632a9e5ec4605a0e68a6);
+        
+    
+        var popup_c561d5e625273d3df1ae50efaae88f6f = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_9f026aa283f34f531b3991cba6cfc6b0 = $(`<div id="html_9f026aa283f34f531b3991cba6cfc6b0" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">EWG7FR</b><br>               ICAO: 3C55C2<br>               Højde: 37.975 ft<br>               Fart: 426 kt<br>               Kurs: 216°             </div></div>`)[0];
+                popup_c561d5e625273d3df1ae50efaae88f6f.setContent(html_9f026aa283f34f531b3991cba6cfc6b0);
+            
+        
+
+        marker_ee3749b3d1533996c2c370bdc176cd25.bindPopup(popup_c561d5e625273d3df1ae50efaae88f6f)
+        ;
+
+        
+    
+    
+            marker_ee3749b3d1533996c2c370bdc176cd25.bindTooltip(
+                `<div>
+                     EWG7FR  37.975 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9b7ee859c0240f7cb5b6b5cc02914e94 = L.marker(
+                [55.71, 12.13],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_06a05b58de1fa0646e239dd74134b4eb = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(71deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_9b7ee859c0240f7cb5b6b5cc02914e94.setIcon(div_icon_06a05b58de1fa0646e239dd74134b4eb);
+        
+    
+        var popup_4fc789f8a88c41515ef400acc6c59f34 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_7d33a50ab7bf9d11744fd15076ac27a7 = $(`<div id="html_7d33a50ab7bf9d11744fd15076ac27a7" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">MMD103</b><br>               ICAO: 458D99<br>               Højde: 8.675 ft<br>               Fart: 292 kt<br>               Kurs: 71°             </div></div>`)[0];
+                popup_4fc789f8a88c41515ef400acc6c59f34.setContent(html_7d33a50ab7bf9d11744fd15076ac27a7);
+            
+        
+
+        marker_9b7ee859c0240f7cb5b6b5cc02914e94.bindPopup(popup_4fc789f8a88c41515ef400acc6c59f34)
+        ;
+
+        
+    
+    
+            marker_9b7ee859c0240f7cb5b6b5cc02914e94.bindTooltip(
+                `<div>
+                     MMD103  8.675 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_218b9fc782ba883b20293e2483392bbd = L.marker(
+                [56.83, 14.76],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_caae8c55fa5ba265df62fb6315ba5d3d = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(29deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_218b9fc782ba883b20293e2483392bbd.setIcon(div_icon_caae8c55fa5ba265df62fb6315ba5d3d);
+        
+    
+        var popup_9eff5c2b036b01d50767e092dac3aafe = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_6bd1ceee8e6c5939af6faf571e257bae = $(`<div id="html_6bd1ceee8e6c5939af6faf571e257bae" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">NJE893G</b><br>               ICAO: 494103<br>               Højde: 31.000 ft<br>               Fart: 437 kt<br>               Kurs: 29°             </div></div>`)[0];
+                popup_9eff5c2b036b01d50767e092dac3aafe.setContent(html_6bd1ceee8e6c5939af6faf571e257bae);
+            
+        
+
+        marker_218b9fc782ba883b20293e2483392bbd.bindPopup(popup_9eff5c2b036b01d50767e092dac3aafe)
+        ;
+
+        
+    
+    
+            marker_218b9fc782ba883b20293e2483392bbd.bindTooltip(
+                `<div>
+                     NJE893G  31.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8d9fc87a8a8ff7a3f0db111a19227eab = L.marker(
+                [57.57, 12.71],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_64d39891c015a617fd6cc4ab1f503cbd = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(43deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_8d9fc87a8a8ff7a3f0db111a19227eab.setIcon(div_icon_64d39891c015a617fd6cc4ab1f503cbd);
+        
+    
+        var popup_8f9c9aa1017e947b3ebfcd33aa840cc9 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_11b25b4a9f58c4dad94774432fd7a323 = $(`<div id="html_11b25b4a9f58c4dad94774432fd7a323" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">KLM59U</b><br>               ICAO: 4867C1<br>               Højde: 36.950 ft<br>               Fart: 474 kt<br>               Kurs: 43°             </div></div>`)[0];
+                popup_8f9c9aa1017e947b3ebfcd33aa840cc9.setContent(html_11b25b4a9f58c4dad94774432fd7a323);
+            
+        
+
+        marker_8d9fc87a8a8ff7a3f0db111a19227eab.bindPopup(popup_8f9c9aa1017e947b3ebfcd33aa840cc9)
+        ;
+
+        
+    
+    
+            marker_8d9fc87a8a8ff7a3f0db111a19227eab.bindTooltip(
+                `<div>
+                     KLM59U  36.950 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7b63bfdd7b51ab4e684b85f13ca866be = L.marker(
+                [56.54, 13.94],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_0152def7386b58cd37f3299be21b7f3e = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(145deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_7b63bfdd7b51ab4e684b85f13ca866be.setIcon(div_icon_0152def7386b58cd37f3299be21b7f3e);
+        
+    
+        var popup_f920970f64b3bc97e2bdb85c3f451588 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_b17a449f3739473f24615fbb70b2a296 = $(`<div id="html_b17a449f3739473f24615fbb70b2a296" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">RYR6HQ</b><br>               ICAO: 48C2B0<br>               Højde: 37.000 ft<br>               Fart: 522 kt<br>               Kurs: 145°             </div></div>`)[0];
+                popup_f920970f64b3bc97e2bdb85c3f451588.setContent(html_b17a449f3739473f24615fbb70b2a296);
+            
+        
+
+        marker_7b63bfdd7b51ab4e684b85f13ca866be.bindPopup(popup_f920970f64b3bc97e2bdb85c3f451588)
+        ;
+
+        
+    
+    
+            marker_7b63bfdd7b51ab4e684b85f13ca866be.bindTooltip(
+                `<div>
+                     RYR6HQ  37.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_852bbf6d1a1650cf50ebb1b6ea7bf0ab = L.marker(
+                [54.52, 16.63],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_a721cd24dd05219244372079f3c3ffe0 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(195deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_852bbf6d1a1650cf50ebb1b6ea7bf0ab.setIcon(div_icon_a721cd24dd05219244372079f3c3ffe0);
+        
+    
+        var popup_5b13303350647a085576cd3ae52282ee = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_b31e26af5ec963710db586cb9484cfd9 = $(`<div id="html_b31e26af5ec963710db586cb9484cfd9" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">FIN9KC</b><br>               ICAO: 461E18<br>               Højde: 40.000 ft<br>               Fart: 462 kt<br>               Kurs: 195°             </div></div>`)[0];
+                popup_5b13303350647a085576cd3ae52282ee.setContent(html_b31e26af5ec963710db586cb9484cfd9);
+            
+        
+
+        marker_852bbf6d1a1650cf50ebb1b6ea7bf0ab.bindPopup(popup_5b13303350647a085576cd3ae52282ee)
+        ;
+
+        
+    
+    
+            marker_852bbf6d1a1650cf50ebb1b6ea7bf0ab.bindTooltip(
+                `<div>
+                     FIN9KC  40.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0d9a69eebb268d474dfd3a1e91cdbd54 = L.marker(
+                [58.27, 12.22],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_f634135fd75dfc7685d2dee7230c5821 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(55deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_0d9a69eebb268d474dfd3a1e91cdbd54.setIcon(div_icon_f634135fd75dfc7685d2dee7230c5821);
+        
+    
+        var popup_79fcf6bedb358b230434cf4e9cc24707 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_57bda78a1abcc652e082970832fba8f9 = $(`<div id="html_57bda78a1abcc652e082970832fba8f9" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">BAW776F</b><br>               ICAO: 4080E9<br>               Højde: 39.000 ft<br>               Fart: 470 kt<br>               Kurs: 55°             </div></div>`)[0];
+                popup_79fcf6bedb358b230434cf4e9cc24707.setContent(html_57bda78a1abcc652e082970832fba8f9);
+            
+        
+
+        marker_0d9a69eebb268d474dfd3a1e91cdbd54.bindPopup(popup_79fcf6bedb358b230434cf4e9cc24707)
+        ;
+
+        
+    
+    
+            marker_0d9a69eebb268d474dfd3a1e91cdbd54.bindTooltip(
+                `<div>
+                     BAW776F  39.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_78657168bd00b49a330125c9653c4dc8 = L.marker(
+                [56.95, 15.94],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_ea8ea927929ee39d1e2c5131570030cf = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(201deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_78657168bd00b49a330125c9653c4dc8.setIcon(div_icon_ea8ea927929ee39d1e2c5131570030cf);
+        
+    
+        var popup_c125310764c8f3786c8a3ca6a09d015f = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_05aae78f48ff4e4d036b28fed9516ff7 = $(`<div id="html_05aae78f48ff4e4d036b28fed9516ff7" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">SAS63Z</b><br>               ICAO: 4AC9E2<br>               Højde: 38.000 ft<br>               Fart: 450 kt<br>               Kurs: 201°             </div></div>`)[0];
+                popup_c125310764c8f3786c8a3ca6a09d015f.setContent(html_05aae78f48ff4e4d036b28fed9516ff7);
+            
+        
+
+        marker_78657168bd00b49a330125c9653c4dc8.bindPopup(popup_c125310764c8f3786c8a3ca6a09d015f)
+        ;
+
+        
+    
+    
+            marker_78657168bd00b49a330125c9653c4dc8.bindTooltip(
+                `<div>
+                     SAS63Z  38.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_22c1d3ae8ba6d86f656c921add2b0ee2 = L.marker(
+                [54.52, 14.78],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_ca5af983d55ca97a06fa84fd7acd13ab = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(154deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_22c1d3ae8ba6d86f656c921add2b0ee2.setIcon(div_icon_ca5af983d55ca97a06fa84fd7acd13ab);
+        
+    
+        var popup_b0cb3ce1b0a9871d1affcf54057d2629 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_138773eb3192e20873b22ac73be01551 = $(`<div id="html_138773eb3192e20873b22ac73be01551" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">WZZ8608</b><br>               ICAO: 4D2424<br>               Højde: 37.000 ft<br>               Fart: 526 kt<br>               Kurs: 154°             </div></div>`)[0];
+                popup_b0cb3ce1b0a9871d1affcf54057d2629.setContent(html_138773eb3192e20873b22ac73be01551);
+            
+        
+
+        marker_22c1d3ae8ba6d86f656c921add2b0ee2.bindPopup(popup_b0cb3ce1b0a9871d1affcf54057d2629)
+        ;
+
+        
+    
+    
+            marker_22c1d3ae8ba6d86f656c921add2b0ee2.bindTooltip(
+                `<div>
+                     WZZ8608  37.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_94bc324c600f8368856bb2052a6b4772 = L.marker(
+                [56.59, 13.06],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_cdc9e46487067cc5b86f91ad873d3753 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(350deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_94bc324c600f8368856bb2052a6b4772.setIcon(div_icon_cdc9e46487067cc5b86f91ad873d3753);
+        
+    
+        var popup_001ac10cd865baea473bd82d09df7e80 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_77c98ce4ee8c2a07513a9acafff7d872 = $(`<div id="html_77c98ce4ee8c2a07513a9acafff7d872" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">RYR4527</b><br>               ICAO: 4CAA61<br>               Højde: 28.275 ft<br>               Fart: 379 kt<br>               Kurs: 350°             </div></div>`)[0];
+                popup_001ac10cd865baea473bd82d09df7e80.setContent(html_77c98ce4ee8c2a07513a9acafff7d872);
+            
+        
+
+        marker_94bc324c600f8368856bb2052a6b4772.bindPopup(popup_001ac10cd865baea473bd82d09df7e80)
+        ;
+
+        
+    
+    
+            marker_94bc324c600f8368856bb2052a6b4772.bindTooltip(
+                `<div>
+                     RYR4527  28.275 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5903e6bd4bab093ce8f2be355d050184 = L.marker(
+                [55.43, 12.27],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_da73514e5e1ddd2f13e4af6bf15f8d2c = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(213deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_5903e6bd4bab093ce8f2be355d050184.setIcon(div_icon_da73514e5e1ddd2f13e4af6bf15f8d2c);
+        
+    
+        var popup_7f2e6a00bb499257b23abc05e760388e = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_7ff628e44289059915e3dcbb16ca06f7 = $(`<div id="html_7ff628e44289059915e3dcbb16ca06f7" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">SAS85Y</b><br>               ICAO: 4CADDA<br>               Højde: 36.000 ft<br>               Fart: 434 kt<br>               Kurs: 213°             </div></div>`)[0];
+                popup_7f2e6a00bb499257b23abc05e760388e.setContent(html_7ff628e44289059915e3dcbb16ca06f7);
+            
+        
+
+        marker_5903e6bd4bab093ce8f2be355d050184.bindPopup(popup_7f2e6a00bb499257b23abc05e760388e)
+        ;
+
+        
+    
+    
+            marker_5903e6bd4bab093ce8f2be355d050184.bindTooltip(
+                `<div>
+                     SAS85Y  36.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c454d65717b7f19cc0905c5febf61924 = L.marker(
+                [55.76, 12.84],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_c7a8215636fd1b68418f5a99e87ef499 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(189deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_c454d65717b7f19cc0905c5febf61924.setIcon(div_icon_c7a8215636fd1b68418f5a99e87ef499);
+        
+    
+        var popup_3d0d2ea8774e91801aac265f756cf9ae = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_cf39c173fa258115001bfd3e517250b2 = $(`<div id="html_cf39c173fa258115001bfd3e517250b2" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">SAS455</b><br>               ICAO: 4AC9E6<br>               Højde: 3.075 ft<br>               Fart: 179 kt<br>               Kurs: 189°             </div></div>`)[0];
+                popup_3d0d2ea8774e91801aac265f756cf9ae.setContent(html_cf39c173fa258115001bfd3e517250b2);
+            
+        
+
+        marker_c454d65717b7f19cc0905c5febf61924.bindPopup(popup_3d0d2ea8774e91801aac265f756cf9ae)
+        ;
+
+        
+    
+    
+            marker_c454d65717b7f19cc0905c5febf61924.bindTooltip(
+                `<div>
+                     SAS455  3.075 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ba02b7e4d0a39be546a103f35d781b90 = L.marker(
+                [57.05, 11.05],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_593aca94c2fe2248859f5ef0cc268504 = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(126deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_ba02b7e4d0a39be546a103f35d781b90.setIcon(div_icon_593aca94c2fe2248859f5ef0cc268504);
+        
+    
+        var popup_54f043453a5998b1d3a32ad0b6b0c3a8 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_d7343ecf3c5ed058798be3268ab4b0b2 = $(`<div id="html_d7343ecf3c5ed058798be3268ab4b0b2" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">LOT3PK</b><br>               ICAO: 48AE20<br>               Højde: 39.000 ft<br>               Fart: 552 kt<br>               Kurs: 126°             </div></div>`)[0];
+                popup_54f043453a5998b1d3a32ad0b6b0c3a8.setContent(html_d7343ecf3c5ed058798be3268ab4b0b2);
+            
+        
+
+        marker_ba02b7e4d0a39be546a103f35d781b90.bindPopup(popup_54f043453a5998b1d3a32ad0b6b0c3a8)
+        ;
+
+        
+    
+    
+            marker_ba02b7e4d0a39be546a103f35d781b90.bindTooltip(
+                `<div>
+                     LOT3PK  39.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e98bf774179e9160ac97643a593a5f5c = L.marker(
+                [55.95, 13.87],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_3748ac8c23fbf5068966b2c99bae123a = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(28deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_e98bf774179e9160ac97643a593a5f5c.setIcon(div_icon_3748ac8c23fbf5068966b2c99bae123a);
+        
+    
+        var popup_c7cf06d6fc75066ccf67c5e065adea8c = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_18bd12189c4fdb21098849f06866226c = $(`<div id="html_18bd12189c4fdb21098849f06866226c" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">SAS106</b><br>               ICAO: 4CAD98<br>               Højde: 23.475 ft<br>               Fart: 382 kt<br>               Kurs: 28°             </div></div>`)[0];
+                popup_c7cf06d6fc75066ccf67c5e065adea8c.setContent(html_18bd12189c4fdb21098849f06866226c);
+            
+        
+
+        marker_e98bf774179e9160ac97643a593a5f5c.bindPopup(popup_c7cf06d6fc75066ccf67c5e065adea8c)
+        ;
+
+        
+    
+    
+            marker_e98bf774179e9160ac97643a593a5f5c.bindTooltip(
+                `<div>
+                     SAS106  23.475 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cd8b2667640ed85bb4e8da205ee09197 = L.marker(
+                [56.09, 10.91],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_93950bc36babb3fbccf50da66321d37b = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(136deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_cd8b2667640ed85bb4e8da205ee09197.setIcon(div_icon_93950bc36babb3fbccf50da66321d37b);
+        
+    
+        var popup_98e9d9096535dd78aee13e6cd2263638 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_d148ed3cbad45ffb399e90d8a1e1a863 = $(`<div id="html_d148ed3cbad45ffb399e90d8a1e1a863" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">SAS944</b><br>               ICAO: 4ACA66<br>               Højde: 19.975 ft<br>               Fart: 442 kt<br>               Kurs: 136°             </div></div>`)[0];
+                popup_98e9d9096535dd78aee13e6cd2263638.setContent(html_d148ed3cbad45ffb399e90d8a1e1a863);
+            
+        
+
+        marker_cd8b2667640ed85bb4e8da205ee09197.bindPopup(popup_98e9d9096535dd78aee13e6cd2263638)
+        ;
+
+        
+    
+    
+            marker_cd8b2667640ed85bb4e8da205ee09197.bindTooltip(
+                `<div>
+                     SAS944  19.975 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_693e7171b2d56221f400cfe93c59524b = L.marker(
+                [54.59, 11.94],
+                {}
+            ).addTo(map_7dec6d6ceac7344a69f311703afe7a87);
+        
+    
+            var div_icon_d4f5338db89ee42352a7572bc2776c0b = L.divIcon({"className": "empty", "html": "\n            \u003cdiv style=\"\n              font-size:20px;\n              color:#00c8ff;\n              text-shadow: 0 0 6px #00c8ff;\n              transform: rotate(210deg);\n              display:inline-block;\n              line-height:1;\n            \"\u003e\u2708\u003c/div\u003e", "iconAnchor": [12, 12], "iconSize": [24, 24]});
+            marker_693e7171b2d56221f400cfe93c59524b.setIcon(div_icon_d4f5338db89ee42352a7572bc2776c0b);
+        
+    
+        var popup_e5bd4750ee17b2e5291c25da347d987a = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_cc3c6177847010da8f3382457595719b = $(`<div id="html_cc3c6177847010da8f3382457595719b" style="width: 100.0%; height: 100.0%;">             <div style="font-family:monospace;font-size:12px;min-width:140px">               <b style="font-size:14px">SAS93E</b><br>               ICAO: 4AC9E7<br>               Højde: 36.000 ft<br>               Fart: 442 kt<br>               Kurs: 210°             </div></div>`)[0];
+                popup_e5bd4750ee17b2e5291c25da347d987a.setContent(html_cc3c6177847010da8f3382457595719b);
+            
+        
+
+        marker_693e7171b2d56221f400cfe93c59524b.bindPopup(popup_e5bd4750ee17b2e5291c25da347d987a)
+        ;
+
+        
+    
+    
+            marker_693e7171b2d56221f400cfe93c59524b.bindTooltip(
+                `<div>
+                     SAS93E  36.000 ft
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
+</html>

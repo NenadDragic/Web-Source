@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPS Monitor — Dragic.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #f7f5f1;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 2rem 6rem;
+    }
+    main { max-width: 900px; width: 100%; animation: fadein 1.4s ease both; }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .site-name {
+      display: block;
+      font-size: 0.75rem; font-weight: 300; letter-spacing: 0.3em;
+      text-transform: uppercase; color: #999; margin-bottom: 3.5rem; text-align: center;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .site-name:hover { color: #666; }
+    h1 { font-size: 2.6rem; font-weight: 300; letter-spacing: 0.03em; margin-bottom: 0.4rem; line-height: 1.2; }
+    .tagline { font-size: 1.05rem; font-style: italic; font-weight: 300; color: #777; margin-bottom: 2.8rem; }
+    .divider { width: 40px; height: 1px; background: #ccc; margin: 0 0 2.8rem 0; }
+    .meta {
+      font-size: 0.75rem; font-weight: 300; letter-spacing: 0.15em;
+      text-transform: uppercase; color: #aaa; margin-bottom: 2rem;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { border-bottom: 1px solid #ccc; }
+    thead th {
+      font-size: 0.7rem; font-weight: 300; letter-spacing: 0.25em;
+      text-transform: uppercase; color: #999; padding: 0 0.5rem 0.9rem; text-align: left;
+    }
+    thead th:first-child { padding-left: 0; }
+    tbody tr { border-bottom: 1px solid #e8e4de; transition: background 0.15s; }
+    tbody tr:hover { background: #f0ede8; }
+    tbody tr.alarm { background: #fdf0f0; }
+    tbody tr.alarm:hover { background: #f9e4e4; }
+    tbody td {
+      font-size: 1.0rem; font-weight: 300; line-height: 1.5;
+      padding: 0.85rem 0.5rem; color: #333; vertical-align: top;
+    }
+    tbody td:first-child { padding-left: 0; }
+    .status-ok { color: #888; }
+    .status-alarm { font-weight: 400; color: #b94a48; }
+    .status-warn { font-weight: 400; color: #c07a2a; }
+    .info-block {
+      border-top: 1px solid #e8e4de;
+      margin-bottom: 2.2rem;
+    }
+    .info-row {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #e8e4de;
+      align-items: baseline;
+    }
+    .info-label {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #aaa;
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+    .info-text {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: #555;
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .legend-ok   { color: #888; margin-right: 1.2rem; }
+    .legend-warn { color: #c07a2a; margin-right: 1.2rem; }
+    .legend-alarm { color: #b94a48; }
+    footer {
+      margin-top: 5rem; font-size: 0.7rem; font-weight: 300;
+      letter-spacing: 0.18em; color: #bbb; text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a href="https://www.dragic.com" class="site-name">Dragic.com</a>
+    <h1>GPS Monitor</h1>
+    <p class="tagline">Live position log — Hornbæk reference point</p>
+    <div class="divider"></div>
+
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-label">Spoofing</span>
+        <span class="info-text">A sudden position shift of more than 500 m from the reference point triggers an alarm — indicating a potentially falsified GPS signal.</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Jamming</span>
+        <span class="info-text">Fewer than 3 visible satellites detected — possible interference with the GPS signal.</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Parameters</span>
+        <span class="info-text">Reference: Hornbæk (56.0784°N, 12.4456°E) &nbsp;·&nbsp; Threshold: 500 m &nbsp;·&nbsp; CSV interval: every 60 s &nbsp;·&nbsp; HTML: every hour or on event</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Status</span>
+        <span class="info-text">
+          <span class="legend-ok">&#9679; OK</span>
+          <span class="legend-warn">&#9679; Jamming</span>
+          <span class="legend-alarm">&#9679; Spoofing</span>
+        </span>
+      </div>
+    </div>
+
+    <p class="meta">Reference: 56.078441667, 12.445576667 &nbsp;·&nbsp; Max rows: 500 &nbsp;·&nbsp; Generated: 2026-03-24 09:52:10</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Distance</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class=""><td>2026-03-24 09:52:10</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 08:52:10</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 07:52:09</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 06:52:09</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 05:52:09</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 04:52:09</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 03:52:09</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 02:52:08</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 01:52:08</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-24 00:52:08</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 23:52:08</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 22:52:08</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 21:52:08</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 20:52:08</td><td>56.07843500</td><td>12.44559167</td><td>1.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class="alarm"><td>2026-03-23 19:52:07</td><td>56.07834333</td><td>12.44558000</td><td>10.94 m</td><td class="status-alarm">⚠️ ALARM: SPOOFING</td></tr>
+        <tr class="alarm"><td>2026-03-23 19:42:17</td><td>56.07869667</td><td>12.44513500</td><td>39.43 m</td><td class="status-alarm">⚠️ ALARM: SPOOFING</td></tr>
+        <tr class=""><td>2026-03-23 19:03:21</td><td>56.07886000</td><td>12.44496833</td><td>59.91 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 18:03:21</td><td>56.07891167</td><td>12.44499167</td><td>63.63 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 17:03:20</td><td>56.07855000</td><td>12.44496167</td><td>40.02 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 16:03:19</td><td>56.07851500</td><td>12.44550167</td><td>9.39 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 15:03:18</td><td>56.07848333</td><td>12.44562667</td><td>5.58 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 14:03:18</td><td>56.07842500</td><td>12.44565500</td><td>5.20 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 13:03:18</td><td>56.07844833</td><td>12.44567833</td><td>6.35 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 12:03:18</td><td>56.07853500</td><td>12.44541333</td><td>14.51 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 11:03:18</td><td>56.07842167</td><td>12.44558833</td><td>2.34 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 10:03:16</td><td>56.07847833</td><td>12.44560167</td><td>4.36 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 09:03:16</td><td>56.07845167</td><td>12.44559667</td><td>1.67 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 08:03:15</td><td>56.07842833</td><td>12.44560833</td><td>2.46 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 07:03:15</td><td>56.07842833</td><td>12.44558500</td><td>1.57 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 06:03:14</td><td>56.07840500</td><td>12.44554667</td><td>4.48 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 05:03:13</td><td>56.07862167</td><td>12.44566833</td><td>20.81 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 04:03:13</td><td>56.07869667</td><td>12.44540667</td><td>30.25 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 03:03:13</td><td>56.07843000</td><td>12.44554500</td><td>2.35 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 02:03:13</td><td>56.07843833</td><td>12.44552667</td><td>3.12 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 01:03:13</td><td>56.07844500</td><td>12.44560167</td><td>1.59 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-23 00:03:13</td><td>56.07840167</td><td>12.44559833</td><td>4.65 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 23:03:13</td><td>56.07843833</td><td>12.44558333</td><td>0.56 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 22:03:13</td><td>56.07848167</td><td>12.44553500</td><td>5.14 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 21:03:11</td><td>56.07849333</td><td>12.44546333</td><td>9.08 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 20:03:10</td><td>56.07862167</td><td>12.44541667</td><td>22.34 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 19:03:09</td><td>56.07860500</td><td>12.44561000</td><td>18.28 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 18:03:09</td><td>56.07858667</td><td>12.44544167</td><td>18.17 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 17:03:08</td><td>56.07853000</td><td>12.44558667</td><td>9.84 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 16:03:08</td><td>56.07846500</td><td>12.44549833</td><td>5.51 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 15:03:08</td><td>56.07844000</td><td>12.44554000</td><td>2.28 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 14:03:08</td><td>56.07859333</td><td>12.44557833</td><td>16.86 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 13:03:08</td><td>56.07872500</td><td>12.44572500</td><td>32.82 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 12:03:06</td><td>56.07850333</td><td>12.44570500</td><td>10.51 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 11:03:06</td><td>56.07851667</td><td>12.44536167</td><td>15.73 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 10:03:06</td><td>56.07846000</td><td>12.44537500</td><td>12.68 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 09:03:06</td><td>56.07849000</td><td>12.44539500</td><td>12.49 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 08:03:05</td><td>56.07845167</td><td>12.44551000</td><td>4.28 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 07:03:04</td><td>56.07845167</td><td>12.44555167</td><td>1.91 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 06:03:03</td><td>56.07846500</td><td>12.44553667</td><td>3.59 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 05:03:03</td><td>56.07847667</td><td>12.44552667</td><td>4.98 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 04:03:03</td><td>56.07841833</td><td>12.44559000</td><td>2.72 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 03:03:01</td><td>56.07836833</td><td>12.44558833</td><td>8.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 02:03:01</td><td>56.07844833</td><td>12.44561167</td><td>2.29 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 01:03:00</td><td>56.07863667</td><td>12.44507000</td><td>38.19 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-22 00:03:00</td><td>56.07888500</td><td>12.44513000</td><td>56.55 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 23:03:00</td><td>56.07908000</td><td>12.44497667</td><td>80.15 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 22:03:00</td><td>56.07922000</td><td>12.44506667</td><td>92.15 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 21:02:59</td><td>56.07922667</td><td>12.44506500</td><td>92.88 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 20:02:59</td><td>56.07906167</td><td>12.44480833</td><td>83.82 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 19:02:59</td><td>56.07904500</td><td>12.44424500</td><td>106.44 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 18:02:59</td><td>56.07931667</td><td>12.44435333</td><td>123.41 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 17:02:58</td><td>56.07886333</td><td>12.44477333</td><td>68.43 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 16:02:58</td><td>56.07889667</td><td>12.44582667</td><td>52.92 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 15:02:58</td><td>56.07912833</td><td>12.44507667</td><td>82.42 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 14:02:58</td><td>56.07895000</td><td>12.44509000</td><td>64.09 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 13:02:58</td><td>56.07891000</td><td>12.44545333</td><td>52.64 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 12:02:56</td><td>56.07892833</td><td>12.44516167</td><td>59.93 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 11:02:55</td><td>56.07883333</td><td>12.44526500</td><td>47.65 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 10:02:55</td><td>56.07903000</td><td>12.44516333</td><td>70.27 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 09:02:55</td><td>56.07881333</td><td>12.44500667</td><td>54.40 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 08:02:54</td><td>56.07871000</td><td>12.44546167</td><td>30.68 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 07:02:54</td><td>56.07886167</td><td>12.44540667</td><td>47.88 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 06:02:53</td><td>56.07848333</td><td>12.44554333</td><td>5.07 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 05:02:53</td><td>56.07877833</td><td>12.44503167</td><td>50.45 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 04:02:53</td><td>56.07864667</td><td>12.44574500</td><td>25.07 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 03:02:53</td><td>56.07847000</td><td>12.44574500</td><td>10.91 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 02:02:53</td><td>56.07843500</td><td>12.44552500</td><td>3.29 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 01:02:53</td><td>56.07850000</td><td>12.44541500</td><td>11.95 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-21 00:02:53</td><td>56.07839167</td><td>12.44554333</td><td>5.93 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 23:02:53</td><td>56.07840167</td><td>12.44558833</td><td>4.51 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 22:02:53</td><td>56.07849000</td><td>12.44553000</td><td>6.10 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 21:02:53</td><td>56.07848167</td><td>12.44560333</td><td>4.75 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 20:02:51</td><td>56.07844333</td><td>12.44561500</td><td>2.39 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 19:02:50</td><td>56.07870500</td><td>12.44486000</td><td>53.25 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 18:02:50</td><td>56.07879500</td><td>12.44494833</td><td>55.35 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 17:02:49</td><td>56.07866500</td><td>12.44497667</td><td>44.75 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 16:02:49</td><td>56.07871500</td><td>12.44563000</td><td>30.57 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 15:02:48</td><td>56.07893667</td><td>12.44559167</td><td>55.05 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 14:02:48</td><td>56.07881333</td><td>12.44514500</td><td>49.25 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 13:02:48</td><td>56.07844167</td><td>12.44559833</td><td>1.34 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 12:02:46</td><td>56.07855333</td><td>12.44540333</td><td>16.43 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 11:02:46</td><td>56.07864167</td><td>12.44547167</td><td>23.17 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 10:02:45</td><td>56.07860500</td><td>12.44554167</td><td>18.29 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 09:02:45</td><td>56.07846000</td><td>12.44548000</td><td>6.34 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 08:02:44</td><td>56.07869333</td><td>12.44550000</td><td>28.39 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 07:02:44</td><td>56.07849167</td><td>12.44553500</td><td>6.13 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 06:02:43</td><td>56.07849167</td><td>12.44553500</td><td>6.13 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 05:02:43</td><td>56.07846167</td><td>12.44559833</td><td>2.60 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 04:02:43</td><td>56.07880333</td><td>12.44556167</td><td>40.23 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 03:02:43</td><td>56.07845667</td><td>12.44555167</td><td>2.28 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 02:02:43</td><td>56.07847333</td><td>12.44559000</td><td>3.62 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 01:02:41</td><td>56.07843000</td><td>12.44549167</td><td>5.43 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-20 00:02:41</td><td>56.07844333</td><td>12.44554833</td><td>1.77 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 23:02:40</td><td>56.07869000</td><td>12.44549333</td><td>28.09 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 22:02:40</td><td>56.07918167</td><td>12.44533667</td><td>83.62 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 21:02:39</td><td>56.07924833</td><td>12.44497000</td><td>97.28 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 20:02:38</td><td>56.07907167</td><td>12.44533333</td><td>71.66 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 19:02:38</td><td>56.07929333</td><td>12.44477500</td><td>106.97 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 18:02:38</td><td>56.07923333</td><td>12.44404000</td><td>129.77 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 17:02:38</td><td>56.07925833</td><td>12.44488333</td><td>100.49 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 16:02:36</td><td>56.07942333</td><td>12.44591833</td><td>111.20 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 15:02:35</td><td>56.07918667</td><td>12.44571167</td><td>83.26 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 14:02:35</td><td>56.07871500</td><td>12.44531667</td><td>34.41 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 13:02:35</td><td>56.07843000</td><td>12.44558167</td><td>1.33 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 12:02:35</td><td>56.07842833</td><td>12.44556333</td><td>1.70 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 11:02:34</td><td>56.07853333</td><td>12.44544667</td><td>13.00 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 10:02:34</td><td>56.07840500</td><td>12.44560500</td><td>4.44 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 09:02:34</td><td>56.07849500</td><td>12.44559500</td><td>6.04 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 08:02:33</td><td>56.07841167</td><td>12.44550167</td><td>5.73 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 07:02:33</td><td>56.07846167</td><td>12.44562667</td><td>3.82 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 06:02:33</td><td>56.07847500</td><td>12.44552000</td><td>5.11 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 05:02:33</td><td>56.07866167</td><td>12.44520167</td><td>33.76 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 04:02:33</td><td>56.07906667</td><td>12.44567667</td><td>69.77 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 03:02:31</td><td>56.07844833</td><td>12.44551333</td><td>4.00 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 02:02:31</td><td>56.07845500</td><td>12.44552000</td><td>3.82 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 01:02:30</td><td>56.07847333</td><td>12.44557833</td><td>3.52 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-19 00:02:29</td><td>56.07844167</td><td>12.44557167</td><td>0.31 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 23:02:29</td><td>56.07844000</td><td>12.44560000</td><td>1.46 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 22:02:29</td><td>56.07844500</td><td>12.44555000</td><td>1.70 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 21:02:29</td><td>56.07842667</td><td>12.44559000</td><td>1.86 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 20:02:28</td><td>56.07841000</td><td>12.44558000</td><td>3.53 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 19:02:28</td><td>56.07846167</td><td>12.44555667</td><td>2.55 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 18:02:26</td><td>56.07845833</td><td>12.44556000</td><td>2.12 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 17:02:26</td><td>56.07848833</td><td>12.44555167</td><td>5.42 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 16:02:25</td><td>56.07851500</td><td>12.44560333</td><td>8.32 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 15:02:24</td><td>56.07857667</td><td>12.44562667</td><td>15.33 m</td><td class="status-ok">OK</td></tr>
+        <tr class=""><td>2026-03-18 14:02:24</td><td>56.07834000</td><td>12.44573500</td><td>14.98 m</td><td class="status-ok">System Start</td></tr>
+
+      </tbody>
+    </table>
+  </main>
+  <footer>© 2026 Nenad Ahlstrøm Dragic</footer>
+</body>
+</html>
